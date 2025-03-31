@@ -504,6 +504,7 @@
         <a href="#" class="fas fa-heart"></a>
         <a href="#" class="fas fa-shopping-cart"></a>
         <a href="#" class="fas fa-user"></a>
+        <a href="#" class="fas fa-chart-line"></a>
     </div>
 </header>
 
