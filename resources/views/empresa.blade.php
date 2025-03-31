@@ -7,14 +7,14 @@
 
     <!--Este enlace carga la biblioteca Font Awesome en su versión 6.4.2, que permite usar iconos en la página web. -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    
+
     <!--"llama a la clase style -->
     <link rel="stylesheet" href="resources/css/styles.css"/>
 
 
-    <style> 
+    <style>
             :root{
-            --pink:#e84393; 
+            --pink:#e84393;
         }
 
         *{
@@ -109,7 +109,7 @@
         header .icons a{
             font-size: 1.5rem;
             color:#333;
-            margin-left: 1.5rem; 
+            margin-left: 1.5rem;
         }
 
         header .icons a:hover{
@@ -173,7 +173,7 @@
             align-items: center; /* Centra el contenido verticalmente */
             justify-content: center; /* Centra el contenido horizontalmente */
             text-align: center; /* Centra el texto debajo del video */
-            
+
         }
 
         .video-container video {
@@ -182,12 +182,12 @@
             height: auto; /* Mantiene la proporción del video */
             border-radius: 10px; /* Opcional: Bordes redondeados */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para mejor apariencia */
-            
+
         }
         .acerca .row {
             display: flex;
-            align-items: center; 
-            justify-content: center; 
+            align-items: center;
+            justify-content: center;
             gap: 2rem; /* Espaciado entre elementos */
             flex-wrap: wrap; /* Permite que los elementos se acomoden en pantallas pequeñas */
         }
@@ -404,7 +404,7 @@
 
 
 
-        /* media queries */ 
+        /* media queries */
         @media(max-width:991px){
             html{
                 font-size: 55%;
@@ -424,7 +424,7 @@
         }
 
         @media(max-width:768px){
-            
+
             header .fa-bars{
                 display: block;
             }
@@ -460,12 +460,12 @@
             .icons-container .icons h3{
                 font-size: 2rem;
             }
-            
+
             .icons-container .icons span{
                 font-size: 1.7rem;
             }
-            
-            
+
+
         }
 
 
@@ -478,7 +478,7 @@
                 font-size: 3rem;
             }
         }
-        
+
 
             </style>
 
@@ -508,10 +508,10 @@
 </header>
 
 <!-- header section ends-->
-<!-- home section starts-->  
+<!-- home section starts-->
 <section class="home" id="home">
 
-    <div class="content"> 
+    <div class="content">
         <h2>Luz & Aroma</h2>
         <span>Ambiente agradable y relajante en sus hogares </span>
         <p>Empresa dedicada a hacer velas aromáticas hechas a mano. Estas velas están hechas con cera natural y aceites que dan buenos olores</p>
@@ -528,7 +528,7 @@
 
         <div class="video-container">
             <video src="videove.mp4"loop autoplay muted></video>
-            
+
         </div>
 
         <div class="content">
@@ -538,7 +538,7 @@
         </div>
     </div>
  </section>
-<!-- about section ends-->  
+<!-- about section ends-->
 
 <!-- icons section starts-->
  <section class="icons-container">
@@ -580,9 +580,9 @@
     <div class="box-container">
 
         <div class="box">
-            <span class="discount">-10%</span>
+            <span class="discount">-5%</span>
             <div class="image">
-                <img src="Vela1.jpg" alt=""> 
+                <img src="Vela1.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -591,14 +591,14 @@
             </div>
             <div class="content">
                 <h3>Vela 1</h3>
-                <div class="price">$20<span>$15</span></div>
+                <div class="price">$72<span>$120</span></div>
             </div>
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="/Vela2.jpg" alt=""> 
+                <img src="/Vela2.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -612,9 +612,9 @@
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela3.jpg" alt=""> 
+                <img src="Vela3.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -628,9 +628,9 @@
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela4.jpg" alt=""> 
+                <img src="Vela4.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -644,9 +644,9 @@
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela5.jpg" alt=""> 
+                <img src="Vela5.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -662,7 +662,7 @@
         <div class="box">
             <span class="discount">-10%</span>
             <div class="image">
-                <img src="Vela6.jpg" alt=""> 
+                <img src="Vela6.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -671,14 +671,14 @@
             </div>
             <div class="content">
                 <h3>Vela 6</h3>
-                <div class="price">$240<span>$190</span></div>
+                <div class="price">$154<span>$240</span></div>
             </div>
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela7.jpg" alt=""> 
+                <img src="Vela7.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -694,7 +694,7 @@
         <div class="box">
             <span class="discount">-10%</span>
             <div class="image">
-                <img src="Vela8.jpg" alt=""> 
+                <img src="Vela8.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -703,14 +703,14 @@
             </div>
             <div class="content">
                 <h3>Vela 8</h3>
-                <div class="price">$210<span>$170</span></div>
+                <div class="price">$179<span>$310</span></div>
             </div>
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela9.jpg" alt=""> 
+                <img src="Vela9.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -724,9 +724,9 @@
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela10.jpg" alt=""> 
+                <img src="Vela10.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -742,7 +742,7 @@
         <div class="box">
             <span class="discount">-10%</span>
             <div class="image">
-                <img src="Vela11.jpg" alt=""> 
+                <img src="Vela11.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
@@ -751,14 +751,14 @@
             </div>
             <div class="content">
                 <h3>Vela 11</h3>
-                <div class="price">$310<span>$270</span></div>
+                <div class="price">$270<span>$164</span></div>
             </div>
         </div>
 
         <div class="box">
-            
+
             <div class="image">
-                <img src="Vela12.jpg" alt=""> 
+                <img src="Vela12.jpg" alt="">
                 <div class="icons">
                     <a href="#" class="fas fa-heart"></a>
                     <a href="#" class="cart-btn">Añadir</a>
