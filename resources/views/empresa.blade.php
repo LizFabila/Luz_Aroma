@@ -505,6 +505,7 @@
         <a href="#" class="fas fa-shopping-cart"></a>
         <a href="#" class="fas fa-user"></a>
         <a href="#" class="fas fa-chart-line"></a>
+        <a href="{{ route('vela') }}" class="fas fa-chart-line"></a>
     </div>
 </header>
 

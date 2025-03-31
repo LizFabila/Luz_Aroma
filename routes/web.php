@@ -13,3 +13,6 @@ Route::get('/empresa', function () {
 Route::get('/vela', function () {
     return view('vela');
 });
+Route::get('/vela', function () {
+    return view('vela');
+})->name('vela');
