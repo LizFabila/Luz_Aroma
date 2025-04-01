@@ -16,3 +16,8 @@ Route::get('/vela', function () {
 Route::get('/vela', function () {
     return view('vela');
 })->name('vela');
+
+Route::resource('envios', [App\Http\Controllers\EnvioController::class]);
+Auth::routes();
+
+
