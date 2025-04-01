@@ -10,9 +10,7 @@ Route::get('/empresa', function () {
     return view('empresa');
 });
 
-Route::get('/vela', function () {
-    return view('vela');
-});
+
 Route::get('/vela', function () {
     return view('vela');
 })->name('vela');
