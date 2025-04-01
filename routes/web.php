@@ -18,6 +18,7 @@ Route::get('/vela', function () {
 Route::resource('envios', App\Http\Controllers\EnvioController::class);
 Route::resource('clientes', App\Http\Controllers\ClienteController::class);
 Route::resource('usuarios', App\Http\Controllers\UsuarioController::class);
+Route::resource('productos', App\Http\Controllers\ProductoController::class);
 Auth::routes();
 
 
