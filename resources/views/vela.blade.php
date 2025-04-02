@@ -72,7 +72,7 @@
     <ul>
         <li><a href="#">Login</a></li>
         <li><a href="#">Ventas</a></li>
-        <li><a href="#">Productos</a></li>
+        <li><a href="{{ route ('productos.index') }}">Productos</a></li>
         <li><a href="{{ route('clientes.index') }}">Clientes</a></li>
         <li><a href="#">Configuración</a></li>
     </ul>
