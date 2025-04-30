@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::all();
+        $clientes = Cliente::latest()->get(); // Ordenar por más reciente
         return view('clientes.index', compact('clientes'));
     }
 
@@ -20,19 +20,14 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion_envio' => 'required|string|max:255',
-            'correo_electronico' => 'required|email|max:100',
+            'correo_electronico' => 'required|email|max:100|unique:clientes',
             'telefono' => 'nullable|string|max:15'
         ]);
 
-        Cliente::create([
-            'nombre' => $request->nombre,
-            'direccion_envio' => $request->direccion_envio,
-            'correo_electronico' => $request->correo_electronico,
-            'telefono' => $request->telefono
-        ]);
+        Cliente::create($validatedData);
 
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente registrado correctamente');
@@ -50,14 +45,15 @@ class ClienteController extends Controller
 
     public function update(Request $request, Cliente $cliente)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion_envio' => 'required|string|max:255',
-            'correo_electronico' => 'required|email|max:100',
+            'correo_electronico' => 'required|email|max:100|unique:clientes,correo_electronico,'.$cliente->id,
             'telefono' => 'nullable|string|max:15'
         ]);
 
-        $cliente->update($request->all());
+        $cliente->update($validatedData);
+
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente actualizado correctamente');
     }
@@ -65,6 +61,7 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         $cliente->delete();
+
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente eliminado correctamente');
     }
