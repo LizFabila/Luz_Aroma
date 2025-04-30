@@ -33,10 +33,7 @@
                     <label for="telefono" class="form-label">Teléfono</label>
                     <input type="text" class="form-control" id="telefono" name="telefono" value="{{ $cliente->telefono }}" required>
                 </div>
-                <div class="mb-3">
-                    <label for="fecha_registro" class="form-label">Fecha de Registro</label>
-                    <input type="date" class="form-control" id="fecha_registro" name="fecha_registro" value="{{ $cliente->fecha_registro->format('Y-m-d') }}">
-                </div>
+                
                 <button type="submit" class="btn btn-primary">Actualizar</button>
                 <a href="{{ route('clientes.index') }}" class="btn btn-secondary">Cancelar</a>
             </form>
