@@ -7,61 +7,65 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $clientes = Cliente::all();
-
         return view('clientes.index', compact('clientes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('clientes.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'direccion_envio' => 'required|string|max:255',
+            'correo_electronico' => 'required|email|max:100',
+            'telefono' => 'nullable|string|max:15'
+        ]);
+
+        Cliente::create([
+            'nombre' => $request->nombre,
+            'direccion_envio' => $request->direccion_envio,
+            'correo_electronico' => $request->correo_electronico,
+            'telefono' => $request->telefono
+        ]);
+
+        return redirect()->route('clientes.index')
+            ->with('success', 'Cliente registrado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Cliente $cliente)
     {
-        //
+        return view('clientes.show', compact('cliente'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Cliente $cliente)
     {
-        //
+        return view('clientes.edit', compact('cliente'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'direccion_envio' => 'required|string|max:255',
+            'correo_electronico' => 'required|email|max:100',
+            'telefono' => 'nullable|string|max:15'
+        ]);
+
+        $cliente->update($request->all());
+        return redirect()->route('clientes.index')
+            ->with('success', 'Cliente actualizado correctamente');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Cliente $cliente)
     {
-        //
+        $cliente->delete();
+        return redirect()->route('clientes.index')
+            ->with('success', 'Cliente eliminado correctamente');
     }
 }
