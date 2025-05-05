@@ -3,63 +3,77 @@
 namespace App\Http\Controllers;
 
 use App\Models\Envio;
+use App\Models\Pedido;
+use App\Models\CostoEnvio;
 use Illuminate\Http\Request;
 
 class EnvioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-       return view('envio.index'); //
+        $envios = Envio::with(['pedido', 'costo'])
+            ->orderBy('id_envio', 'asc')
+            ->get();
+        return view('envios.index', compact('envios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-       return"Hola desde Create"; //
+        $pedidos = Pedido::orderBy('id_pedido', 'asc')->get();
+        $costos = Costo::orderBy('id_costo_envio', 'asc')->get();
+        return view('envios.create', compact('pedidos', 'costos'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        return"Hola desde Store";//
+        $validated = $request->validate([
+            'numero_seguimiento' => 'nullable|string|max:100',
+            'fecha_envio' => 'nullable|date',
+            'direccion_destino' => 'nullable|string|max:255',
+            'estado_paquete' => 'nullable|string|max:100',
+            'id_pedido' => 'nullable|exists:pedidos,id_pedido',
+            'id_costo_envio' => 'nullable|exists:costos_envios,id_costo_envio'
+        ]);
+
+        Envio::create($validated);
+
+        return redirect()->route('envios.index')
+            ->with('success', 'Envío registrado correctamente');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Envio $envio)
+    public function edit($id_envio)
     {
-        return"Hola desde Show";//
+        $envio = Envio::findOrFail($id_envio);
+        $pedidos = Pedido::orderBy('id_pedido', 'asc')->get();
+        $costos = Costo::orderBy('id_costo_envio', 'asc')->get();
+        return view('envios.edit', compact('envio', 'pedidos', 'costosEnvios'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Envio $envio)
+    public function update(Request $request, $id_envio)
     {
-        return"Hola desde Edit";//
+        $envio = Envio::findOrFail($id_envio);
+
+        $validated = $request->validate([
+            'numero_seguimiento' => 'nullable|string|max:100',
+            'fecha_envio' => 'nullable|date',
+            'direccion_destino' => 'nullable|string|max:255',
+            'estado_paquete' => 'nullable|string|max:100',
+            'id_pedido' => 'nullable|exists:pedidos,id_pedido',
+            'id_costo_envio' => 'nullable|exists:costos_envios,id_costo_envio'
+        ]);
+
+        $envio->update($validated);
+
+        return redirect()->route('envios.index')
+            ->with('success', 'Envío actualizado correctamente');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Envio $envio)
+    public function destroy($id_envio)
     {
-        return"Hola desde Update";//
-    }
+        $envio = Envio::findOrFail($id_envio);
+        $envio->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Envio $envio)
-    {
-        return"Hola desde Destroy";//
+        return redirect()->route('envios.index')
+            ->with('success', 'Envío eliminado correctamente');
     }
 }

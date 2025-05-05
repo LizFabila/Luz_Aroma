@@ -71,9 +71,12 @@
     <h2>Luz & Aroma</h2>
     <ul>
         <li><a href="#">Login</a></li>
-        <li><a href="#">Ventas</a></li>
+        <li><a href="{{ route ('ventas.index') }}">Ventas</a></li>
         <li><a href="{{ route ('productos.index') }}">Productos</a></li>
         <li><a href="{{ route('clientes.index') }}">Clientes</a></li>
+        <li><a href="{{ route('pedidos.index') }}">Pedidos</a></li>
+        <li><a href="{{ route('costos.index') }}">Costos</a></li>
+        <li><a href="{{ route('envios.index') }}">Envios</a></li>
         <li><a href="#">Configuración</a></li>
     </ul>
     <hr>

@@ -9,7 +9,7 @@ class ClienteController extends Controller
 {
     public function index()
     {
-        $clientes = Cliente::latest()->get(); // Ordenar por más reciente
+        $clientes = Cliente::orderBy('cliente_id', 'asc')->get();
         return view('clientes.index', compact('clientes'));
     }
 
@@ -20,46 +20,51 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion_envio' => 'required|string|max:255',
             'correo_electronico' => 'required|email|max:100|unique:clientes',
             'telefono' => 'nullable|string|max:15'
         ]);
 
-        Cliente::create($validatedData);
+        Cliente::create($validated);
 
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente registrado correctamente');
     }
 
-    public function show(Cliente $cliente)
+    public function show($cliente_id)
     {
+        $cliente = Cliente::findOrFail($cliente_id);
         return view('clientes.show', compact('cliente'));
     }
 
-    public function edit(Cliente $cliente)
+    public function edit($cliente_id)
     {
+        $cliente = Cliente::findOrFail($cliente_id);
         return view('clientes.edit', compact('cliente'));
     }
 
-    public function update(Request $request, Cliente $cliente)
+    public function update(Request $request, $cliente_id)
     {
-        $validatedData = $request->validate([
+        $cliente = Cliente::findOrFail($cliente_id);
+
+        $validated = $request->validate([
             'nombre' => 'required|string|max:255',
             'direccion_envio' => 'required|string|max:255',
-            'correo_electronico' => 'required|email|max:100|unique:clientes,correo_electronico,'.$cliente->id,
+            'correo_electronico' => 'required|email|max:100|unique:clientes,correo_electronico,'.$cliente_id.',cliente_id',
             'telefono' => 'nullable|string|max:15'
         ]);
 
-        $cliente->update($validatedData);
+        $cliente->update($validated);
 
         return redirect()->route('clientes.index')
             ->with('success', 'Cliente actualizado correctamente');
     }
 
-    public function destroy(Cliente $cliente)
+    public function destroy($cliente_id)
     {
+        $cliente = Cliente::findOrFail($cliente_id);
         $cliente->delete();
 
         return redirect()->route('clientes.index')
