@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Envio;
 use App\Models\Pedido;
-use App\Models\CostoEnvio;
+use App\Models\Costo;
 use Illuminate\Http\Request;
 
 class EnvioController extends Controller
 {
     public function index()
     {
-        $envios = Envio::with(['pedido', 'costo'])
+        $envios = Envio::with(['pedido.cliente', 'costo'])
             ->orderBy('id_envio', 'asc')
             ->get();
         return view('envios.index', compact('envios'));
@@ -19,7 +19,7 @@ class EnvioController extends Controller
 
     public function create()
     {
-        $pedidos = Pedido::orderBy('id_pedido', 'asc')->get();
+        $pedidos = Pedido::with('cliente')->orderBy('id_pedido', 'asc')->get();
         $costos = Costo::orderBy('id_costo_envio', 'asc')->get();
         return view('envios.create', compact('pedidos', 'costos'));
     }
@@ -43,10 +43,10 @@ class EnvioController extends Controller
 
     public function edit($id_envio)
     {
-        $envio = Envio::findOrFail($id_envio);
-        $pedidos = Pedido::orderBy('id_pedido', 'asc')->get();
+        $envio = Envio::with(['pedido.cliente', 'costo'])->findOrFail($id_envio);
+        $pedidos = Pedido::with('cliente')->orderBy('id_pedido', 'asc')->get();
         $costos = Costo::orderBy('id_costo_envio', 'asc')->get();
-        return view('envios.edit', compact('envio', 'pedidos', 'costosEnvios'));
+        return view('envios.edit', compact('envio', 'pedidos', 'costos'));
     }
 
     public function update(Request $request, $id_envio)

@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('costos', function (Blueprint $table) {
+        Schema::create('costos_envios', function (Blueprint $table) {
             $table->integer('id_costo_envio')->autoIncrement();
             $table->string('zona', 100)->nullable();
             $table->decimal('precio_base', 10, 2)->nullable();
@@ -17,11 +17,10 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
     }
 
     public function down()
     {
-        Schema::dropIfExists('costos');
+        Schema::dropIfExists('costos_envios');
     }
 };

@@ -9,7 +9,7 @@ class Costo extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'costos_envio';
+    protected $table = 'costos_envios';
     protected $primaryKey = 'id_costo_envio';
     protected $dates = ['deleted_at'];
 

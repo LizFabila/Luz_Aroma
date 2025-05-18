@@ -32,8 +32,9 @@
                                 <th>ID</th>
                                 <th>N° Seguimiento</th>
                                 <th>Fecha Envío</th>
-                                <th>Pedido</th>
+                                <th>Cliente</th>
                                 <th>Estado</th>
+                                <th>Costo Envío</th>
                                 <th>Acciones</th>
                             </tr>
                             </thead>
@@ -43,8 +44,21 @@
                                     <td>{{ $envio->id_envio }}</td>
                                     <td>{{ $envio->numero_seguimiento ?? 'N/A' }}</td>
                                     <td>{{ $envio->fecha_envio ? \Carbon\Carbon::parse($envio->fecha_envio)->format('d/m/Y') : 'N/A' }}</td>
-                                    <td>{{ $envio->pedido->id_pedido ?? 'N/A' }}</td>
+                                    <td>
+                                        @if($envio->pedido && $envio->pedido->cliente)
+                                            {{ $envio->pedido->cliente->nombre }} {{ $envio->pedido->cliente->apellido }}
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td>{{ $envio->estado_paquete ?? 'N/A' }}</td>
+                                    <td>
+                                        @if($envio->costo)
+                                            ${{ number_format($envio->costo->precio_base, 2) }} ({{ $envio->costo->zona ?? 'N/A' }})
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <a href="{{ route('envios.edit', $envio->id_envio) }}" class="btn btn-primary btn-sm">Editar</a>

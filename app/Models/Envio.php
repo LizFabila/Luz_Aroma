@@ -22,9 +22,13 @@ class Envio extends Model
         'id_costo_envio'
     ];
 
+    protected $casts = [
+        'fecha_envio' => 'date'
+    ];
+
     public function pedido()
     {
-        return $this->belongsTo(Pedido::class, 'id_pedido');
+        return $this->belongsTo(Pedido::class, 'id_pedido')->with('cliente');
     }
 
     public function costo()

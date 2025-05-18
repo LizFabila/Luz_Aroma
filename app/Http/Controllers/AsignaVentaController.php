@@ -7,98 +7,71 @@ use App\Models\Venta;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
-class AsignaventaController extends Controller
+class AsignaVentaController extends Controller
 {
-    // Método para mostrar todas las asignaciones de ventas
-    public function indexAll()
+    public function index()
     {
-        $asignaciones = AsignaVenta::with(['venta', 'producto'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $asignaVentas = AsignaVenta::with(['venta', 'producto'])
+            ->orderBy('id_asigna_venta', 'desc')
+            ->get();
 
-        return view('asignaventas.index', [
-            'asignaciones' => $asignaciones,
-            'showVentaColumn' => true
-        ]);
+        return view('asigna_ventas.index', compact('asignaVentas'));
     }
 
-    // Método original para mostrar asignaciones de una venta específica
-    public function index($id_venta)
+    public function create()
     {
-        $venta = Venta::with(['asignaVentas', 'asignaVentas.producto'])->findOrFail($id_venta);
-        return view('asignaventas.index', compact('venta'));
+        $ventas = Venta::orderBy('id_venta', 'desc')->get();
+        $productos = Producto::orderBy('nombre_producto', 'asc')->get();
+        return view('asigna_ventas.create', compact('ventas', 'productos'));
     }
 
-    public function create($id_venta)
-    {
-        $venta = Venta::findOrFail($id_venta);
-        $productos = Producto::orderBy('nombre', 'asc')->get();
-        return view('asignaventas.create', compact('venta', 'productos'));
-    }
-
-    public function store(Request $request, $id_venta)
+    public function store(Request $request)
     {
         $validated = $request->validate([
+            'id_venta' => 'required|exists:ventas,id_venta',
             'id_producto' => 'required|exists:productos,id_producto',
             'cantidad' => 'required|integer|min:1',
-            'precio' => 'required|numeric|min:0'
+            'precio_unitario' => 'required|numeric|min:0'
         ]);
-
-        $validated['id_venta'] = $id_venta;
-        $validated['subtotal'] = $validated['cantidad'] * $validated['precio'];
 
         AsignaVenta::create($validated);
 
-        // Actualizar monto total de la venta
-        $venta = Venta::findOrFail($id_venta);
-        $venta->monto_total = $venta->asignaVentas()->sum('subtotal');
-        $venta->save();
-
-        return redirect()->route('asignaventas.index', $id_venta)
-            ->with('success', 'Producto asignado a venta correctamente');
+        return redirect()->route('asigna-ventas.index')
+            ->with('success', 'Relación venta-producto creada correctamente');
     }
 
-    public function edit($id_venta, $id_asigna_venta)
+    public function edit($id)
     {
-        $asignaVenta = AsignaVenta::findOrFail($id_asigna_venta);
-        $productos = Producto::orderBy('nombre', 'asc')->get();
-        return view('asignaventas.edit', compact('asignaVenta', 'productos'));
+        $asignaVenta = AsignaVenta::findOrFail($id);
+        $ventas = Venta::orderBy('id_venta', 'desc')->get();
+        $productos = Producto::orderBy('nombre_producto', 'asc')->get();
+
+        return view('asigna_ventas.edit', compact('asignaVenta', 'ventas', 'productos'));
     }
 
-    public function update(Request $request, $id_venta, $id_asigna_venta)
+    public function update(Request $request, $id)
     {
-        $asignaVenta = AsignaVenta::findOrFail($id_asigna_venta);
+        $asignaVenta = AsignaVenta::findOrFail($id);
 
         $validated = $request->validate([
+            'id_venta' => 'required|exists:ventas,id_venta',
             'id_producto' => 'required|exists:productos,id_producto',
             'cantidad' => 'required|integer|min:1',
-            'precio' => 'required|numeric|min:0'
+            'precio_unitario' => 'required|numeric|min:0'
         ]);
-
-        $validated['subtotal'] = $validated['cantidad'] * $validated['precio'];
 
         $asignaVenta->update($validated);
 
-        // Actualizar monto total de la venta
-        $venta = Venta::findOrFail($id_venta);
-        $venta->monto_total = $venta->asignaVentas()->sum('subtotal');
-        $venta->save();
-
-        return redirect()->route('asignaventas.index', $id_venta)
-            ->with('success', 'Producto de venta actualizado correctamente');
+        return redirect()->route('asigna-ventas.index')
+            ->with('success', 'Relación venta-producto actualizada correctamente');
     }
 
-    public function destroy($id_venta, $id_asigna_venta)
+    public function destroy($id)
     {
-        $asignaVenta = AsignaVenta::findOrFail($id_asigna_venta);
+        $asignaVenta = AsignaVenta::findOrFail($id);
         $asignaVenta->delete();
 
-        // Actualizar monto total de la venta
-        $venta = Venta::findOrFail($id_venta);
-        $venta->monto_total = $venta->asignaVentas()->sum('subtotal');
-        $venta->save();
-
-        return redirect()->route('asignaventas.index', $id_venta)
-            ->with('success', 'Producto eliminado de la venta correctamente');
+        return redirect()->route('asigna-ventas.index')
+            ->with('success', 'Relación venta-producto eliminada correctamente');
     }
 }

@@ -9,7 +9,7 @@
                 </h3>
                 <a href="{{ route('asigna-ventas.create') }}"
                    class="btn btn-light btn-sm float-end"
-                   style="margin-top: -6rem;
+                   style="margin-top: -4rem;
                       border: 2px solid #e84393;
                       color: #000000;
                       background-color: rgba(255,255,255,0.9);">
@@ -31,7 +31,7 @@
                         <th>Venta</th>
                         <th>Producto</th>
                         <th>Cantidad</th>
-                        <th>P. Unitario</th>
+                        <th>Precio Unitario</th>
                         <th>Subtotal</th>
                         <th>Acciones</th>
                     </tr>

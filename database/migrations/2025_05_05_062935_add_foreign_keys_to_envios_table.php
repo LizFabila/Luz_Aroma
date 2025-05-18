@@ -8,10 +8,8 @@ return new class extends Migration
 {
     public function up()
     {
-        // Verificar que las tablas referenciadas existen
         if (Schema::hasTable('pedidos') && Schema::hasTable('costos_envios')) {
             Schema::table('envios', function (Blueprint $table) {
-                // Asegurar que las columnas existen
                 if (Schema::hasColumn('envios', 'id_pedido')) {
                     $table->foreign('id_pedido')
                         ->references('id_pedido')
@@ -34,7 +32,6 @@ return new class extends Migration
     public function down()
     {
         Schema::table('envios', function (Blueprint $table) {
-            // Eliminar las claves foráneas por nombre
             $table->dropForeign(['id_pedido']);
             $table->dropForeign(['id_costo_envio']);
         });

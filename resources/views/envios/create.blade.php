@@ -62,7 +62,7 @@
                                     <option value="">Seleccione un pedido</option>
                                     @foreach($pedidos as $pedido)
                                         <option value="{{ $pedido->id_pedido }}" {{ old('id_pedido') == $pedido->id_pedido ? 'selected' : '' }}>
-                                            Pedido #{{ $pedido->id_pedido }} - {{ $pedido->cliente->nombre ?? 'Sin cliente' }}
+                                            Pedido #{{ $pedido->id_pedido }} - {{ $pedido->cliente->nombre ?? 'Sin cliente' }} {{ $pedido->cliente->apellido ?? '' }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -75,9 +75,9 @@
                                 <label for="id_costo_envio" class="form-label">Costo de Envío</label>
                                 <select name="id_costo_envio" class="form-select @error('id_costo_envio') is-invalid @enderror">
                                     <option value="">Seleccione un costo</option>
-                                    @foreach($costosEnvios as $costo)
+                                    @foreach($costos as $costo)
                                         <option value="{{ $costo->id_costo_envio }}" {{ old('id_costo_envio') == $costo->id_costo_envio ? 'selected' : '' }}>
-                                            {{ $costo->nombre }} - ${{ number_format($costo->costo, 2) }}
+                                            {{ $costo->zona }} - ${{ number_format($costo->precio_base, 2) }}
                                         </option>
                                     @endforeach
                                 </select>

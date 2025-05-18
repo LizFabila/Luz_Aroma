@@ -14,11 +14,8 @@ return new class extends Migration
             $table->date('fecha_envio')->nullable();
             $table->string('direccion_destino', 255)->nullable();
             $table->string('estado_paquete', 100)->nullable();
-
-            // Columnas que serán claves foráneas (sin la restricción aún)
             $table->integer('id_pedido')->nullable();
             $table->integer('id_costo_envio')->nullable();
-
             $table->timestamps();
             $table->softDeletes();
         });

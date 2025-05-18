@@ -1,5 +1,5 @@
 :root{
-    --pink:#e84393; 
+    --pink: rgba(232, 67, 147, 0.61);
 }
 
 *{
@@ -93,7 +93,7 @@ header .navbar a:hover{
 header .icons a{
     font-size: 1.5rem;
     color:#333;
-    margin-left: 1.5rem; 
+    margin-left: 1.5rem;
 }
 
 header .icons a:hover{
@@ -156,7 +156,7 @@ body {
     align-items: center; /* Centra el contenido verticalmente */
     justify-content: center; /* Centra el contenido horizontalmente */
     text-align: center; /* Centra el texto debajo del video */
-     
+
 }
 
 .video-container video {
@@ -165,12 +165,12 @@ body {
     height: auto; /* Mantiene la proporción del video */
     border-radius: 10px; /* Opcional: Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para mejor apariencia */
-    
+
 }
 .acerca .row {
     display: flex;
-    align-items: center; 
-    justify-content: center; 
+    align-items: center;
+    justify-content: center;
     gap: 2rem; /* Espaciado entre elementos */
     flex-wrap: wrap; /* Permite que los elementos se acomoden en pantallas pequeñas */
 }
@@ -387,7 +387,7 @@ body {
 
 
 
-/* media queries */ 
+/* media queries */
 @media(max-width:991px){
     html{
         font-size: 55%;
@@ -407,7 +407,7 @@ body {
 }
 
 @media(max-width:768px){
-    
+
     header .fa-bars{
         display: block;
     }
@@ -443,12 +443,12 @@ body {
     .icons-container .icons h3{
         font-size: 2rem;
     }
-    
+
     .icons-container .icons span{
         font-size: 1.7rem;
     }
-    
-    
+
+
 }
 
 
@@ -461,4 +461,4 @@ body {
         font-size: 3rem;
     }
 }
-   
+

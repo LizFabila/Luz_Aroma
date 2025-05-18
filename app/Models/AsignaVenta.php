@@ -9,31 +9,29 @@ class AsignaVenta extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'asignaventas';
-    protected $primaryKey = 'id_asigna_ventas';
-    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+    protected $table = 'Asigna_Ventas';
+    protected $primaryKey = 'id_asigna_venta';
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'cantidad',
-        'subtotal',
-        'precio',
         'id_venta',
-        'id_producto'
+        'id_producto',
+        'cantidad',
+        'precio_unitario'
     ];
 
     protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-        'deleted_at' => 'datetime',
+        'precio_unitario' => 'decimal:2',
+        'subtotal' => 'decimal:2'
     ];
 
     public function venta()
     {
-        return $this->belongsTo(Venta::class, 'id_venta', 'id_venta');
+        return $this->belongsTo(Venta::class, 'id_venta');
     }
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'id_producto', 'id_producto');
+        return $this->belongsTo(Producto::class, 'id_producto');
     }
 }
